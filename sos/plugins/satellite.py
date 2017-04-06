@@ -79,11 +79,11 @@ class Satellite(Plugin, RedHatPlugin):
                 "/etc/tnsnames.ora",
                 "/etc/jabberd"
             ])
-            self.ui_log.info(" START Calling spacewalk-debug ...")
+            self._log_info("START Calling spacewalk-debug...")
             self.add_cmd_output(
                 "spacewalk-debug --dir %s"
-                % self.get_cmd_output_path(name="spacewalk-debug"))
-            self.ui_log.info(" END Calling spacewalk-debug ...")
+                % self.get_cmd_output_path(name="spacewalk-debug"), timeout=900)
+            self._log_info("END Calling spacewalk-debug...")
 
         if self.proxy:
             self.add_copy_spec(["/etc/squid", "/var/log/squid"])
